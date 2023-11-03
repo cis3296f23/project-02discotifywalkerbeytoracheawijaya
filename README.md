@@ -20,6 +20,8 @@ tar -xzf
 Follow this project board to know the latest status of the project: [http://...]([http://...])  
 
 ### How to build
+https://github.com/orgs/cis3296f23/projects/112
+
 - Use this github repository: ... 
 - Specify what branch to use for a more stable release or for cutting edge development.  
 - Use InteliJ 11
