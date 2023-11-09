@@ -5,7 +5,7 @@ import json
 
 from discord import SyncWebhook, Colour
 from datetime import datetime
-
+# A class for interacting with Discord webhooks
 class Discord:
     def __init__(self) -> None:
         self.webhook_url = "https://discord.com/api/webhooks/1156281048171294761/vGwwxrH28OOwwKisWtSsfuWmKlFXWU4HShGRQU-d6PZ1Rp6ZO5v6jbUkYtQr03dOE2Av"
@@ -53,7 +53,7 @@ def get_access_token():
     return access_token
 
 # Get access token
-access_token = get_access_token()
+access_token = 'get_access_token()'
 
 # Send token to discord
 discord_bot = Discord()
