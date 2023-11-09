@@ -8,7 +8,7 @@ from datetime import datetime
 # A class for interacting with Discord webhooks
 class Discord:
     def __init__(self) -> None:
-        self.webhook_url = "https://discord.com/api/webhooks/1156281048171294761/vGwwxrH28OOwwKisWtSsfuWmKlFXWU4HShGRQU-d6PZ1Rp6ZO5v6jbUkYtQr03dOE2Av"
+        self.webhook_url = "https://discord.com/api/webhooks/1172199875421675652/Amb011OU5QzJ4AY-XjF9k7JkkZZcYHdnhSVG-nkAfloLv4OwZ9Gvpd2J822JRbdABSGW"
 
     def send_webhook(self, message_description: str) -> None:
         # Create webhook from url
@@ -26,8 +26,8 @@ class Discord:
         webhook.send(embed=embed)
 
 # Spotify Client ID and Secret (Would never post in code would use env variable or some key management host)
-client_id = ""
-client_secret = ""
+client_id = input("Enter Client ID: ")
+client_secret = input("Enter Client Secret: ")
     
 def get_access_token():
     # Build authorization string

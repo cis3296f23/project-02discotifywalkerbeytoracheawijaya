@@ -1,20 +1,33 @@
-# Project Name
-Put here a short paragraph describing your project. 
-Adding an screenshot or a mockup of your application in action would be nice.  
+# Discotify
+Discotify is a Discord/Spotify bot solution to enhance user experiences when listening to Spotify music in Discord parties. Our Discord bot solution allows multiple people to control Spotify listening parties instead of a single person. Your listening experience can now become fun and collaborative!
+Users who would benefit most from this program would be users who have Spotify premium and actively use Discord with friends or other people.
+Once users are in Discord and in each others Spotify listening parties, users can send commands to the bot. These commands include but are not limited to actions such as start track, pause track, skip track, and add to queue.
 
-![This is a screenshot.](images.png)
+![Token sent to Discord webhook](webhookexample.png)
 # How to run
-Provide here instructions on how to use your application.   
-- Download the latest binary from the Release section on the right on GitHub.  
-- On the command line uncompress using
-```
-tar -xzf  
-```
-- On the command line run with
-```
-./hello
-```
-- You will see Hello World! on your terminal. 
+
+1. Ensure you have python3 installed on your system. 
+    - To check that python is installed properly run this command in your terminal:
+        ```
+        python --version
+        ```
+    - If the previous commands does not work try:
+        ```
+        python3 --version
+        ```
+    - If the command is successful you will see your current python version installed
+
+2. Open a terminal or command prompt.
+
+3. Use the following command to install the required modules using pip, the package installer for Python:
+
+        pip install discord jsonlib base64 requests
+
+4. Wait for the installation to complete. Once finished, the required modules will be installed in the Python environment.
+
+5. Run executable.
+        
+
 
 # How to contribute
 Follow this project board to know the latest status of the project: [http://...]([http://...])  
