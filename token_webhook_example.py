@@ -57,6 +57,7 @@ access_token = 'get_access_token()'
 
 # Send token to discord
 #message = "Testing by Par!"
+# compiles and works for Adam after a grueling troubleshooting session
 discord_bot = Discord()
 discord_bot.send_webhook(access_token)
 #discord_bot.send_webhook(message)
