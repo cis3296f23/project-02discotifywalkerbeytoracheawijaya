@@ -53,7 +53,7 @@ def get_access_token():
     return access_token
 
 # Get access token
-access_token = 'get_access_token()'
+access_token = get_access_token()
 
 # Send token to discord
 #message = "Testing by Par!"
