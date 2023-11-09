@@ -56,7 +56,9 @@ def get_access_token():
 access_token = get_access_token()
 
 # Send token to discord
+#message = "Testing by Par!"
 discord_bot = Discord()
 discord_bot.send_webhook(access_token)
+#discord_bot.send_webhook(message)
 for i in range(10):
     print("Successfully send token to discord webhook!\n")
