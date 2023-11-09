@@ -52,7 +52,7 @@ def get_access_token():
 
     return access_token
 
-# Get access token
+# Get access token(which is not implemented yet)
 access_token = 'get_access_token()'
 
 # Send token to discord
