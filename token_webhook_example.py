@@ -2,9 +2,11 @@ import discord
 from requests import post
 import base64
 import json
-
 from discord import SyncWebhook, Colour
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
 # A class for interacting with Discord webhooks
 class Discord:
     def __init__(self) -> None:
@@ -25,9 +27,16 @@ class Discord:
         # Send payload to webhook url
         webhook.send(embed=embed)
 
+ # Load environment variables from the .env file
+load_dotenv() 
 # Spotify Client ID and Secret (Would never post in code would use env variable or some key management host)
-client_id = input("Enter Client ID: ")
-client_secret = input("Enter Client Secret: ")
+client_id = os.getenv("SPOTIFY_CLIENT_ID")
+client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
+
+if not client_id or not client_secret:
+    print("Error: Spotify client ID or secret not found in environment variables.")
+    exit(1)
+
     
 def get_access_token():
     # Build authorization string
