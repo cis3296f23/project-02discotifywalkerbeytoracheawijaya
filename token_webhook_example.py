@@ -6,6 +6,10 @@ from discord import SyncWebhook, Colour
 from datetime import datetime
 import os
 from dotenv import load_dotenv
+import logging
+
+# initializing logging at the start
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # A class for interacting with Discord webhooks
 class Discord:
@@ -37,39 +41,53 @@ if not client_id or not client_secret:
     print("Error: Spotify client ID or secret not found in environment variables.")
     exit(1)
 
-    
 def get_access_token():
-    # Build authorization string
-    authorization_string = client_id + ":" + client_secret
-    authorization_bytes = authorization_string.encode('utf-8')
-    authorization_base64 = str(base64.b64encode(authorization_bytes), 'utf-8')
+    try:
+        # Build authorization string
+        authorization_string = client_id + ":" + client_secret
+        authorization_bytes = authorization_string.encode('utf-8')
+        authorization_base64 = str(base64.b64encode(authorization_bytes), 'utf-8')
 
-    # Build payload to send
-    token_url = "https://accounts.spotify.com/api/token"
-    headers = {
-        "Authorization": "Basic " + authorization_base64,
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
-    data = {
-        "grant_type": "client_credentials"
-    }
+        # Build payload to send
+        token_url = "https://accounts.spotify.com/api/token"
+        headers = {
+            "Authorization": "Basic " + authorization_base64,
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+        data = {
+            "grant_type": "client_credentials"
+        }
 
-    # Send payload and retrieve access token
-    query = post(token_url, headers=headers, data=data)
-    json_data = json.loads(query.content)
-    access_token = json_data["access_token"]
-
-    return access_token
+        # Send payload and retrieve access token
+        query = post(token_url, headers=headers, data=data)
+        json_data = json.loads(query.content)
+        access_token = json_data["access_token"]
+        logging.info("Access token received.")
+        return access_token
+    except Exception as e:
+        logging.error(f"Error getting access token: {e}")
+        return None
 
 # Get access token
 access_token = get_access_token()
+discord_bot = Discord()
+
+# Sends tokens to discord and show logging information if an error or not has happened.
+if access_token:
+    try:
+        discord_bot.send_webhook(access_token)
+        logging.info("Access token sent to discord.")
+    except Exception as e:
+        logging.error(f"Error sending token to Discord: {e}")
+else:
+    logging.error("Access token not retrieved, cannot send to Discord.")
 
 # Send token to discord
 #message = "Testing by Par!"
 # compiles and works for Adam after a grueling troubleshooting session
-discord_bot = Discord()
+# discord_bot = Discord()
 ## Send the access token to the Discord webhook
-discord_bot.send_webhook(access_token)
+# discord_bot.send_webhook(access_token)
 #discord_bot.send_webhook(message)
 for i in range(10):
     print("Successfully send token to discord webhook!\n")
