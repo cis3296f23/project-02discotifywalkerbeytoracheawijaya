@@ -40,4 +40,12 @@ https://github.com/orgs/cis3296f23/projects/112
 - Use InteliJ 11
 - Specify additional library to download if needed 
 - What file and target to compile and run. 
-- What is expected to happen when the app start. 
+- What is expected to happen when the app start.
+
+# Troubleshooting Problems
+Continuously adding new problems that come up through development or building, will post common problems and solutions for current/future developers to refer to.
+
+### Compiling/Building Issues
+If `pip install discord jsonlib base64 requests` doesn't work and you are on macOS, try removing the base64 and see if that works.
+Make sure you are also using the correct interpreter for your IDE if you using that to run the program.
+you can check what interpreter your terminal is using with `which python` or `which python3`.
