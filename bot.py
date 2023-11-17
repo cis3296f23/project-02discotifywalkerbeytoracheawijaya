@@ -1,6 +1,11 @@
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
+import os
 
+# Load environment variables from .env file
+load_dotenv()
+   
 # Create an instance of the Intents class
 intents = discord.Intents.default()
 
@@ -19,5 +24,5 @@ async def hello(ctx):
     await ctx.send(f'Hello, {ctx.author.mention}!')
 
 # Replace 'YOUR_TOKEN' with your bot's token
-token = ''
+token = os.getenv('TOKEN')
 bot.run(token)
