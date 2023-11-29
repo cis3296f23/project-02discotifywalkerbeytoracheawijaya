@@ -70,7 +70,7 @@ async def refresh_spotify_token():
     token_info = spotify_oauth.refresh_access_token(spotify_tokens['refresh_token'])
     spotify_tokens['access_token'] = token_info['access_token']
 
-@bot.command(name='play', help='Play a track on Spotify by name, name and artist, or Spotify URL.')
+@bot.command(name='play', help='play a track on Spotify by name, name and artist, or Spotify URL.')
 async def play(ctx, *, query: str):
     """ Command to play a track on Spotify """
     if spotify_tokens['access_token'] is None:
@@ -102,6 +102,52 @@ async def play(ctx, *, query: str):
 
         spotify.start_playback(device_id=device_id, uris=[f'spotify:track:{track_id}'])
         await ctx.send(f'Now playing "{track_name}"\nRequested by: {requester}\nTrack URL: {track_url}')
+    except spotipy.exceptions.SpotifyException as e:
+        await ctx.send("An error occurred: " + str(e))
+
+@bot.command(name='pause', help='Pause playback on Spotify')
+async def pause(ctx):
+    """ Command to pause playback on Spotify """
+    if spotify_tokens['access_token'] is None:
+        await ctx.send("You need to authenticate with Spotify first.")
+        return
+
+    await refresh_spotify_token()
+
+    spotify = spotipy.Spotify(auth=spotify_tokens['access_token'])
+
+    try:
+        devices = spotify.devices()
+        device_id = devices['devices'][0]['id'] if devices['devices'] else None
+
+        if device_id:
+            spotify.pause_playback(device_id=device_id)
+            await ctx.send("Playback paused on your Spotify device.")
+        else:
+            await ctx.send("No available Spotify devices found.")
+    except spotipy.exceptions.SpotifyException as e:
+        await ctx.send("An error occurred: " + str(e))
+
+@bot.command(name='start', help='Resume playback on Spotify')
+async def start(ctx):
+    """ Command to resume playback on Spotify """
+    if spotify_tokens['access_token'] is None:
+        await ctx.send("You need to authenticate with Spotify first.")
+        return
+
+    await refresh_spotify_token()
+
+    spotify = spotipy.Spotify(auth=spotify_tokens['access_token'])
+
+    try:
+        devices = spotify.devices()
+        device_id = devices['devices'][0]['id'] if devices['devices'] else None
+
+        if device_id:
+            spotify.start_playback(device_id=device_id)
+            await ctx.send("Playback resumed on your Spotify device.")
+        else:
+            await ctx.send("No available Spotify devices found.")
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
