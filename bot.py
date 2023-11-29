@@ -152,6 +152,29 @@ async def start(ctx):
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
+@bot.command(name='next', help='Skip to the next track on Spotify')
+async def next_track(ctx):
+    """ Command to skip to the next track on Spotify """
+    if spotify_tokens['access_token'] is None:
+        await ctx.send("You need to authenticate with Spotify first.")
+        return
+
+    await refresh_spotify_token()
+
+    spotify = spotipy.Spotify(auth=spotify_tokens['access_token'])
+
+    try:
+        devices = spotify.devices()
+        device_id = devices['devices'][0]['id'] if devices['devices'] else None
+
+        if device_id:
+            spotify.next_track(device_id=device_id)
+            await ctx.send("Skipped to the next track on your Spotify device.")
+        else:
+            await ctx.send("No available Spotify devices found.")
+    except spotipy.exceptions.SpotifyException as e:
+        await ctx.send("An error occurred: " + str(e))
+
 @bot.command(name='devices', help='List available Spotify devices')
 async def devices(ctx):
     """ Command to list available Spotify devices """
