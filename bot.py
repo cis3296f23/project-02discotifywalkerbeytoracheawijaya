@@ -104,7 +104,7 @@ async def play(ctx, *, query: str):
         await ctx.send(f'Now playing "{track_name}"\nRequested by: {requester}\nTrack URL: {track_url}')
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
-
+#pause the mussic
 @bot.command(name='pause', help='Pause playback on Spotify')
 async def pause(ctx):
     """ Command to pause playback on Spotify """
@@ -128,6 +128,7 @@ async def pause(ctx):
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
+#resumes the music 
 @bot.command(name='start', help='Resume playback on Spotify')
 async def start(ctx):
     """ Command to resume playback on Spotify """
