@@ -276,6 +276,42 @@ async def top_tracks(ctx):
         await ctx.send('\n'.join(top_tracks))
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
+@bot.command(name='playlist', help='Play a playlist from your library on Spotify by name.')
+async def playlist(ctx, *, query: str):
+    """ Command to play a playlist from the user's library on Spotify """
+    if spotify_tokens['access_token'] is None:
+        await ctx.send("You need to authenticate with Spotify first.")
+        return
+
+    await refresh_spotify_token()
+
+    spotify = spotipy.Spotify(auth=spotify_tokens['access_token'])
+
+    try:
+        devices = spotify.devices()
+        device_id = devices['devices'][0]['id'] if devices['devices'] else None
+
+        # Get the current user's playlists
+        results = spotify.current_user_playlists()
+        playlist = None
+        for item in results['items']:
+            if item['name'].lower() == query.lower():
+                playlist = item
+                break
+
+        if not playlist:
+            await ctx.send("Sorry, I couldn't find that playlist in your library.")
+            return
+
+        playlist_id = playlist['id']
+        playlist_name = playlist['name']
+        playlist_url = playlist['external_urls']['spotify']
+        requester = ctx.author.mention
+
+        spotify.start_playback(device_id=device_id, context_uri=f'spotify:playlist:{playlist_id}')
+        await ctx.send(f'Now playing playlist "{playlist_name}"\nRequested by: {requester}\nPlaylist URL: {playlist_url}')
+    except spotipy.exceptions.SpotifyException as e:
+        await ctx.send("An error occurred: " + str(e))
 
 # Run the bot
 token = os.getenv('DISCORD_TOKEN')
