@@ -28,7 +28,7 @@ spotify_oauth = SpotifyOAuth(
     client_id=os.getenv("SPOTIFY_CLIENT_ID"),
     client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
     redirect_uri="http://localhost:8888/callback",  # Redirect URI for Spotify authentication
-    scope="user-modify-playback-state user-read-playback-state",  # Spotify scopes for access
+    scope="user-modify-playback-state user-read-playback-state user-top-read",  # Spotify scopes for access
     state=''.join(random.choices(string.ascii_uppercase + string.digits, k=16))  # Random state string for CSRF protection
 )
 
@@ -44,6 +44,7 @@ def spotify_callback():
         return "State mismatch. Please try again.", 400
     token_info = spotify_oauth.get_access_token(code)
     spotify_tokens['access_token'] = token_info['access_token']
+    print(f"Access token: {spotify_tokens['access_token']}")  # Print the access token
     spotify_tokens['refresh_token'] = token_info['refresh_token']
     return "Authenticated successfully with Spotify. You can close this window."
 
@@ -248,7 +249,34 @@ async def show_help(ctx):
     """ Command to list available commands"""
     command_list = [f'!{command.name}' for command in bot.commands if not command.hidden]
     await ctx.send('Available commands: \n' + '\n'.join(command_list))
-    
+
+@bot.command(name='toptracks', help='Show your top 10 tracks on Spotify')
+async def top_tracks(ctx):
+    """ Command to show the user's top 10 tracks on Spotify """
+    if spotify_tokens['access_token'] is None:
+        await ctx.send("You need to authenticate with Spotify first.")
+        return
+
+    await refresh_spotify_token()
+
+    spotify = spotipy.Spotify(auth=spotify_tokens['access_token'])
+
+    try:
+        results = spotify.current_user_top_tracks(limit=10)
+        if not results['items']:
+            await ctx.send("Sorry, I couldn't find your top tracks.")
+            return
+
+        top_tracks = []
+        for i, item in enumerate(results['items'], start=1):
+            track_name = item['name']
+            artist_name = item['artists'][0]['name']  # Get the first artist
+            top_tracks.append(f"{i}. {track_name} by {artist_name}")
+
+        await ctx.send('\n'.join(top_tracks))
+    except spotipy.exceptions.SpotifyException as e:
+        await ctx.send("An error occurred: " + str(e))
+
 # Run the bot
 token = os.getenv('DISCORD_TOKEN')
 bot.run(token)
