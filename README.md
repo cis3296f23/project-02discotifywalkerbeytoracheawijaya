@@ -124,3 +124,6 @@ you can check what interpreter your terminal is using with `which python` or `wh
 If you received this error, make sure to add your Spotify Client ID and Secret to 4 environment variables as if you don't you will receive an `INVALID_CLIENT: Invalid client` error when you click on the authentication link sent by the discord bot.
 Make sure you have also added your own Discord Bot token to the environment variable `DISCORD_TOKEN`.
 
+### 403 Error with !previous
+If you used !previous and got an error 403, it's most likely because you tried to do the command while not in a playlist. If you did !play and then !previous, you will get the error since you are playing just one single song and there hasn't been any previous history.
+
