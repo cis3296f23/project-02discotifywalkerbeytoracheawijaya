@@ -5,6 +5,10 @@ import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import asyncio
+import threading
+from flask import Flask, request
+import random
+import string
 
 # Load environment variables
 load_dotenv()
@@ -16,19 +20,36 @@ intents.message_content = True
 # Initialize Discord bot
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+# Initialize Flask app for handling Spotify callback
+app = Flask(__name__)
+
 # Initialize Spotify client with OAuth for user authentication
 spotify_oauth = SpotifyOAuth(
     client_id=os.getenv("SPOTIFY_CLIENT_ID"),
     client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
-    redirect_uri="http://localhost:8888",  # Redirect URI for Spotify authentication
-    scope="user-modify-playback-state user-read-playback-state"  # Spotify scopes for access
+    redirect_uri="http://localhost:8888/callback",  # Redirect URI for Spotify authentication
+    scope="user-modify-playback-state user-read-playback-state",  # Spotify scopes for access
+    state=''.join(random.choices(string.ascii_uppercase + string.digits, k=16))  # Random state string for CSRF protection
 )
 
 # Global variable to store Spotify access and refresh tokens
-spotify_tokens = {
-    'access_token': None,
-    'refresh_token': None
-}
+spotify_tokens = {}
+
+@app.route('/callback')
+def spotify_callback():
+    """ Handle Spotify callback after user authentication """
+    code = request.args.get('code')
+    state = request.args.get('state')
+    if state != spotify_oauth.state:
+        return "State mismatch. Please try again.", 400
+    token_info = spotify_oauth.get_access_token(code)
+    spotify_tokens['access_token'] = token_info['access_token']
+    spotify_tokens['refresh_token'] = token_info['refresh_token']
+    return "Authenticated successfully with Spotify. You can close this window."
+
+def run_flask_app():
+    """ Run Flask app in a separate thread """
+    app.run(port=8888)
 
 @bot.event
 async def on_ready():
@@ -43,26 +64,16 @@ async def hello(ctx):
 @bot.command(name='auth', help='Authenticate with Spotify')
 async def authenticate(ctx):
     """ Command to handle Spotify authentication """
-    # Generate and send authentication URL
     auth_url = spotify_oauth.get_authorize_url()
-    await ctx.send(f"Please authenticate with Spotify here: {auth_url}")
+    button = discord.ui.Button(label='Authenticate with Spotify', url=auth_url)
+    view = discord.ui.View()
+    view.add_item(button)
+    # Send a message with the button
+    await ctx.send("Please authenticate with Spotify by clicking the button below:", view=view)
 
-    await ctx.send("Please paste the callback URL after authentication.")
+    # Start Flask app in a separate thread
+    threading.Thread(target=run_flask_app, daemon=True).start()
 
-    # Wait for user's response
-    def check(m):
-        return m.author == ctx.author and m.channel == ctx.channel
-
-    try:
-        message = await bot.wait_for('message', check=check, timeout=300)  # 5 minutes timeout
-        callback_url = message.content
-        code = spotify_oauth.parse_response_code(callback_url)
-        token_info = spotify_oauth.get_access_token(code)
-        spotify_tokens['access_token'] = token_info['access_token']
-        spotify_tokens['refresh_token'] = token_info['refresh_token']
-        await ctx.send("Authenticated successfully with Spotify.")
-    except asyncio.TimeoutError:
-        await ctx.send("Authentication timeout. Please try again.")
 
 async def refresh_spotify_token():
     """ Helper function to refresh Spotify token """
@@ -70,6 +81,7 @@ async def refresh_spotify_token():
     token_info = spotify_oauth.refresh_access_token(spotify_tokens['refresh_token'])
     spotify_tokens['access_token'] = token_info['access_token']
 
+# play music (spotify link, song name, song name and artist)
 @bot.command(name='play', help='play a track on Spotify by name, name and artist, or Spotify URL.')
 async def play(ctx, *, query: str):
     """ Command to play a track on Spotify """
@@ -104,7 +116,8 @@ async def play(ctx, *, query: str):
         await ctx.send(f'Now playing "{track_name}"\nRequested by: {requester}\nTrack URL: {track_url}')
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
-#pause the mussic
+        
+# pause the music
 @bot.command(name='pause', help='Pause playback on Spotify')
 async def pause(ctx):
     """ Command to pause playback on Spotify """
@@ -128,7 +141,7 @@ async def pause(ctx):
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
-#resumes the music 
+# resumes the music 
 @bot.command(name='start', help='Resume playback on Spotify')
 async def start(ctx):
     """ Command to resume playback on Spotify """
@@ -212,6 +225,7 @@ async def previous_track(ctx):
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
+# showing device that are availiable
 @bot.command(name='devices', help='List available Spotify devices')
 async def devices(ctx):
     """ Command to list available Spotify devices """
