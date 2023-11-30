@@ -117,3 +117,10 @@ Continuously adding new problems that come up through development or building, w
 If `pip install discord jsonlib base64 requests` doesn't work and you are on macOS, try removing the base64 and see if that works.
 Make sure you are also using the correct interpreter for your IDE if you using that to run the program.
 you can check what interpreter your terminal is using with `which python` or `which python3`.
+
+### INVALID_CLIENT error when authenticating Issues
+<img width="881" alt="Pasted Graphic" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/73480024-ee16-48cb-a7f7-4e95b2b6b4fd">
+
+If you received this error, make sure to add your Spotify Client ID and Secret to 4 environment variables as if you don't you will receive an `INVALID_CLIENT: Invalid client` error when you click on the authentication link sent by the discord bot.
+Make sure you have also added your own Discord Bot token to the environment variable `DISCORD_TOKEN`.
+
