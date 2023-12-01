@@ -4,6 +4,14 @@ Users who would benefit most from this program would be users who have Spotify p
 Once users are in Discord and in each others Spotify listening parties, users can send commands to the bot. These commands include but are not limited to actions such as start track, pause track, skip track, and add to queue.
 
 ![Token sent to Discord webhook](webhookexample.png)
+
+# How to get Discord Bot Token
+
+1. Go to Discord Developer Portal
+    - Here link: https://discordapp.com/developers/applications/
+    - The portal shows all of your application and bots. If you already have a bot created, clikc it in the list. If you don't have any discord bots, click "New Application" button.
+
+
 # How to run
 
 **MacOS:**
@@ -162,4 +170,5 @@ Make sure you have also added your own Discord Bot token to the environment vari
 
 ### 403 Error with !previous
 If you used !previous and got an error 403, it's most likely because you tried to do the command while not in a playlist. If you did !play and then !previous, you will get the error since you are playing just one single song and there hasn't been any previous history.
+
 
