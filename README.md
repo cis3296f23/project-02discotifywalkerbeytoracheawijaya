@@ -40,6 +40,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
      ```
         SPOTIFY_CLIENT_ID= your_client_id
         SPOTIFY_CLIENT_SECRET= your_client_secret
+        DISCORD_TOKEN= your_discord_token
     ``` 
     - Save that file.
 
@@ -83,6 +84,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
      ```
         SPOTIFY_CLIENT_ID= your_client_id
         SPOTIFY_CLIENT_SECRET= your_client_secret
+        DISCORD_TOKEN= your_discord_token
     ``` 
     - Save that file.
     - Make sure you save it as type **All Files**
@@ -94,6 +96,41 @@ Once users are in Discord and in each others Spotify listening parties, users ca
      ```    
     - Can also run executable by right-clicking token_webhook_example.exe in File Explorer and then clicking on **Open**
 
+**Docker:**
+
+1. Ensure Docker is installed on your current OS ([Docker Desktop Download](https://www.docker.com/products/docker-desktop/))
+2. Once Docker is installed be sure to run the Docker application ensuring that the daemon is running.
+3. Open a terminal of your choice and check to see if Docker is installed properly with the following command:
+     ```
+     docker --version
+     ```   
+4. Once you have verified Docker is installed and running pull our latest image.
+     ```
+     docker pull andrewto/discotify:v3.0
+     ```
+5. Once pulled be sure to setup your environment variables.
+    - In the same directory the executable is located, create a .env file in Notepad
+
+    - Set your Client ID and Client Secret in the following format ([How to find Client ID and Client Secret](https://developer.spotify.com/documentation/web-api/concepts/apps)):
+
+     ```
+        SPOTIFY_CLIENT_ID= your_client_id
+        SPOTIFY_CLIENT_SECRET= your_client_secret
+        DISCORD_TOKEN= your_discord_token
+    ``` 
+    - Save that file.
+    - Make sure you save it as type **All Files**
+6. Run the image with the following command:
+     ```
+     docker run --env-file env_file andrewto/discotify:v3.0
+     ```
+     - env_file will be the path to your .env file that you created in the previous step
+    - to run multiple containers you can a command similar to:
+     ```
+    docker run --env-file env_file_1 -d --name container1 andrewto/discotify:v3.0
+    docker run --env-file env_file_2 -d --name container2 andrewto/discotify:v3.0
+     ```
+     - env_file_1 and env_file_2 are paths to your two .env files while container1 and container2 can be any names you want to want to name your container
 
 
 
