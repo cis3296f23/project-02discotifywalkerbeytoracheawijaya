@@ -28,7 +28,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 
 4. Wait for the installation to complete. Once finished, the required modules will be installed in the Python environment.
 
-5. Download executable from release in Repo **token_webhook_example**
+5. Download executable from release in Repo **bot**
 
 6. Set up environment variables
     - In the same directory the executable is located, create a .env file
@@ -47,9 +47,8 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 5. Run executable.
     - In the directory you downloaded the executeable, Run:  
      ```
-     ./token_webhook_example 
+     ./bot 
      ```    
-    - Can also run executable by right-clicking token_webhook_example file in Finder and then clicking on **Open**
 
 
 **Windows OS:**
@@ -74,7 +73,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 
 4. Wait for the installation to complete. Once finished, the required modules will be installed in the Python environment.
 
-5. Download executable from release in Repo **token_webhook_example.exe**
+5. Download executable from release in Repo **bot.exe**
 
 6. Set up environment variables
     - In the same directory the executable is located, create a .env file in Notepad
@@ -92,9 +91,9 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 5. Run executable.
     - In the directory you downloaded the executeable, Run:  
      ```
-     .\token_webhook_example.exe 
+     .\bot.exe 
      ```    
-    - Can also run executable by right-clicking token_webhook_example.exe in File Explorer and then clicking on **Open**
+    - Can also run executable by right-clicking bot.exe in File Explorer and then clicking on **Open**
 
 **Docker:**
 
