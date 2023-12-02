@@ -5,11 +5,34 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 
 ![Token sent to Discord webhook](webhookexample.png)
 
-# How to get Discord Bot Token
+## Step 1: Create a Discord Bot Account
 
-1. Go to Discord Developer Portal
-    - Here link: https://discordapp.com/developers/applications/
-    - The portal shows all of your application and bots. If you already have a bot created, clikc it in the list. If you don't have any discord bots, click "New Application" button.
+1. **Go to the Discord Developer Portal**: Open your web browser and navigate to the [Discord Developer Portal](https://discord.com/developers/applications).
+
+2. **Create a New Application**: Click on the “New Application” button. Give your application a name and confirm the creation.
+   <img width="2056" alt="Screenshot 2023-12-02 at 3 15 41 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/0218dfa0-c533-4b04-a921-1fac253ccf27">
+
+3. **Create a Bot User**: Within your application, find the “Bot” tab and click on “Add Bot”. Confirm the creation of the bot.
+    <img width="349" alt="Screenshot 2023-12-02 at 3 21 38 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/bf07680a-b349-4a0e-aa99-00249f0cc21b">
+
+4. **Enable Intents**: In the bot tab, you will see options for 'Privileged Gateway Intents'
+   <img width="1393" alt="Screenshot 2023-12-02 at 3 32 53 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/3fc77a98-14ea-47b8-bb22-af8bcc750561">
+
+## Step 2: Get Your Bot Token
+
+1. **Access the Bot Tab**: In your application, navigate to the “Bot” tab.
+   
+2. **Copy the Token**: Under the “Build-A-Bot” section, you’ll see a token. Click on “Reset Token” to reset your bot's token and copy bot's token. Keep this token secure, as it allows anyone to control your bot.
+   <img width="1377" alt="Screenshot 2023-12-02 at 3 32 02 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/c85bb316-2590-40d0-8aac-96766f11ac77">
+
+
+## Step 3: Invite the Bot to Your Server
+
+1. **Generate the Invite Link**: Go to the “OAuth2” tab in your application. Under “Scopes”, select “bot”. Then, under “Bot Permissions”, choose the permissions you want your bot to have.
+
+2. **Copy and Use the Invite Link**: Copy the generated link and paste it into your web browser. Select the server to which you want to add the bot and authorize it.
+    <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/f1384395-cf1b-46d4-8a2e-4f6d6272448b">
+
 
 
 # How to run
