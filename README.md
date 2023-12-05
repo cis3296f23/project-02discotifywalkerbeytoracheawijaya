@@ -50,6 +50,11 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 4. Invite your friends !
 <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1145.png">
 
+**Note:**
+- Only the jam session host needs to run the executable file
+- The jam session host must then autheicate (!auth) with the bot (only the jam session host needs to do this)
+- After this is done, everyone in the jam session can use the commands for the bot 
+
 
 # How to run
 
