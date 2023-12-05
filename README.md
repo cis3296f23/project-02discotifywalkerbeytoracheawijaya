@@ -33,6 +33,24 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 2. **Copy and Use the Invite Link**: Copy the generated link and paste it into your web browser. Select the server to which you want to add the bot and authorize it.
     <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/f1384395-cf1b-46d4-8a2e-4f6d6272448b">
 
+
+# How To Set Up Spotify Jam Sesson
+
+1. Open Spotify and play something
+
+ <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1142.png">
+
+2. Tap the Connect device icon at the bottom of the screen and then start a jam session
+
+<img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1143.png">
+
+3. You will now have a jam session
+<img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1144.png">
+
+4. Invite your friends!
+<img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1145.png">
+
+
 # How to run
 
 **MacOS:**
