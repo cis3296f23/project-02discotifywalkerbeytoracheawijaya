@@ -47,7 +47,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 3. You will now have a jam session
 <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1144.png">
 
-4. Invite your friends!
+4. Invite your friends !
 <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1145.png">
 
 
