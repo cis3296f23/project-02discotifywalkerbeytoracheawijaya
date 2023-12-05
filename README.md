@@ -1,7 +1,7 @@
 # Discotify
 Discotify is a Discord/Spotify bot solution to enhance user experiences when listening to Spotify music in Discord parties. Our Discord bot solution allows multiple people to control Spotify listening parties instead of a single person. Your listening experience can now become fun and collaborative!
 Users who would benefit most from this program would be users who have Spotify premium and actively use Discord with friends or other people.
-Once users are in Discord and in each others Spotify listening parties, users can send commands to the bot. These commands include but are not limited to actions such as start track, pause track, skip track, and add to queue.
+Once users are in Discord and in each others Spotify listening parties, users can send commands to the bot. These commands include but are not limited to actions such as start track, pause track, skip track, and add to queue
 
 ![Token sent to Discord webhook](webhookexample.png)
 
