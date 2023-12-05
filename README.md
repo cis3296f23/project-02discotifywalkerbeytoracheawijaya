@@ -38,17 +38,17 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 
 1. Open Spotify and play something
 
- <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1142.png">
+ <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1142.png">
 
 2. Tap the Connect device icon at the bottom of the screen and then start a jam session
 
-<img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1143.png">
+<img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1143.png">
 
 3. You will now have a jam session
-<img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1144.png">
+<img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1144.png">
 
 4. Invite your friends !
-<img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1145.png">
+<img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1145.png">
 
 
 # How to run
