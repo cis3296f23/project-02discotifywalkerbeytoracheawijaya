@@ -5,7 +5,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 
 ![Token sent to Discord webhook](webhookexample.png)
 
-## Step 1: Create a Discord Bot Account
+## Create a Discord Bot Account
 
 1. **Go to the Discord Developer Portal**: Open your web browser and navigate to the [Discord Developer Portal](https://discord.com/developers/applications).
 
@@ -18,7 +18,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 4. **Enable Intents**: In the bot tab, you will see options for `Privileged Gateway Intents`
    <img width="1393" alt="Screenshot 2023-12-02 at 3 32 53 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/3fc77a98-14ea-47b8-bb22-af8bcc750561">
 
-## Step 2: Get Your Bot Token
+## Get Your Bot Token
 
 1. **Access the Bot Tab**: In your application, navigate to the `Bot` tab.
    
@@ -26,7 +26,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
    <img width="1377" alt="Screenshot 2023-12-02 at 3 32 02 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/c85bb316-2590-40d0-8aac-96766f11ac77">
 
 
-## Step 3: Invite the Bot to Your Server
+## Invite the Bot to Your Server
 
 1. **Generate the Invite Link**: Go to the `OAuth2` tab in your application. Under `Scopes`, select `bot`. Then, under `Bot Permissions`, choose the permissions you want your bot to have.
 
