@@ -12,7 +12,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 2. **Create a New Application**: Click on the `New Application` button. Give your application a name and confirm the creation.
    <img width="2056" alt="Screenshot 2023-12-02 at 3 15 41 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/0218dfa0-c533-4b04-a921-1fac253ccf27">
 
-3. **Create a Bot User**: Within your application, find the `Bot` tab and click on `Add Bot`. Confirm the creation of the bot.
+3. **Create a Bot User**: Within your application, find the `Bot` tab and click on `Add Bot`. Confirm the creation of the bot. <br />
     <img width="349" alt="Screenshot 2023-12-02 at 3 21 38 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/bf07680a-b349-4a0e-aa99-00249f0cc21b">
 
 4. **Enable Intents**: In the bot tab, you will see options for `Privileged Gateway Intents`
