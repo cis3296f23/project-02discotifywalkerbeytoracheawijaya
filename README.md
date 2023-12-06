@@ -3,7 +3,23 @@ Discotify is a Discord/Spotify bot solution to enhance user experiences when lis
 Users who would benefit most from this program would be users who have Spotify premium and actively use Discord with friends or other people.
 Once users are in Discord and in each others Spotify listening parties, users can send commands to the bot. These commands include but are not limited to actions such as start track, pause track, skip track, and add to queue.
 
-![Token sent to Discord webhook](webhookexample.png)
+# General Commands
+1. `!hello` : Greets the user.
+2. `!auth` : Initiates authentication with Spotify.
+3. `!help` : Displays a list of avaiable commands.
+
+# Spotify Playback Control
+1. `!play <query>` : plays a track on Spotify. The `<query>` can be a Spotify link, song name, or song name with the artist.
+2. `!pause` : Pauses the current playback on Spotify.
+3. `!resume` : Resumes playback on Spotify.
+4. `!next` : Skips to the next track on Spotify.
+5. `!previous` : Goes to the previous track on Spotify
+6. `!devices` : Lists avaiable Spotify devices.
+
+# Spotify User Data
+1. `!toptracks` : Shows the user's top 10 tracks on Spotify.
+2. `!playlist <name>` : Plays a playlist from the user's library on Spotify by playlist name.
+3. `!profile` : Show user Spotify profile
 
 ## Create a Discord Bot Account
 
