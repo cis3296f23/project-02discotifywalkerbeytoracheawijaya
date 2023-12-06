@@ -11,7 +11,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 # Spotify Playback Control
 1. `!play <query>` : plays a track on Spotify. The `<query>` can be a Spotify link, song name, or song name with the artist.
 2. `!pause` : Pauses the current playback on Spotify.
-3. `!resume` : Resumes playback on Spotify.
+3. `!start` : Resumes playback on Spotify.
 4. `!next` : Skips to the next track on Spotify.
 5. `!previous` : Goes to the previous track on Spotify
 6. `!devices` : Lists avaiable Spotify devices.
@@ -237,13 +237,25 @@ If `pip install discord jsonlib base64 requests` doesn't work and you are on mac
 Make sure you are also using the correct interpreter for your IDE if you using that to run the program.
 you can check what interpreter your terminal is using with `which python` or `which python3`.
 
-### INVALID_CLIENT error when authenticating Issues
+## INVALID_CLIENT error when authenticating Issues
 <img width="881" alt="Pasted Graphic" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/73480024-ee16-48cb-a7f7-4e95b2b6b4fd">
 
 If you received this error, make sure to add your Spotify Client ID and Secret to 4 environment variables as if you don't you will receive an `INVALID_CLIENT: Invalid client` error when you click on the authentication link sent by the discord bot.
 Make sure you have also added your own Discord Bot token to the environment variable `DISCORD_TOKEN`.
 
-### 403 Error with !previous
+## 403 Error with !previous
 If you used !previous and got an error 403, it's most likely because you tried to do the command while not in a playlist. If you did !play and then !previous, you will get the error since you are playing just one single song and there hasn't been any previous history.
 
+## "bot" cannot be open because it is from an unidentified developer (Mac)
+<img width="916" alt="Screenshot 2023-12-05 at 10 25 39 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/24e403ae-785c-42d3-9005-8b278d5057ac">
 
+
+1. Choose Apple menu > System Settings
+2. Click Privacy & Security from the left sidebar <br />
+   <img width="711" alt="Screenshot 2023-12-05 at 10 32 16 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/c8bff0d3-0d39-4b63-b9c7-6008b28878b2"> <br />
+3. Scroll down to Security
+4. Click `Open Anyway`<br />
+   <img width="711" alt="Screenshot 2023-12-05 at 10 32 22 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/63df8051-8e89-40e5-a5f1-7e7299130243">
+5. After enter your password, Click `Open`<br />
+   <img width="711" alt="Screenshot 2023-12-05 at 10 42 46 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/c36a9fae-ff14-4b68-80c7-aae1cd0107e8">
+6. Bot are ready to go.
