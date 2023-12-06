@@ -49,27 +49,49 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 2. **Copy and Use the Invite Link**: Copy the generated link and paste it into your web browser. Select the server to which you want to add the bot and authorize it.
     <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/f1384395-cf1b-46d4-8a2e-4f6d6272448b">
 
+# How to set up listening party on Discord
 
-# How To Set Up Spotify Jam Sesson
+1. Open Spotify and play something
+   ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/ed85770f-7d69-48e6-9f70-c0d26fe03c2b)
+
+3. Click on the "+" button next to your chatbox at the bottom left and click on "Invite [users] to Listen to Spotify"
+   ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/a3d3fd73-38eb-430d-a226-60a797ee099d)
+
+5. You should be able to see when you're in a listening party through Discord
+
+   ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/495b32b4-f15a-4ee1-ac8f-0fdf2fd2976b)
+   
+6. People can now click the Join button to be in your listening party!
+
+**Note:**
+- Only the listening party host needs to run the executable file
+- The listening party host must then authenticate (!auth) with the bot (only the listening party host needs to do this)
+- After this is done, everyone in the listening party can use the commands for the bot
+- If you pause (!pause) then the listening party will end, this is on Spotify/Discords end on how they made the functionality
+
+
+# [EXPERIMENTAL] How To set up Spotify Jam Session
 
 1. Open Spotify and play something
 
  <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1142.png">
 
-2. Tap the Connect device icon at the bottom of the screen and then start a jam session
+2. Tap the connect device icon at the bottom of the screen and then start a Jam session
 
 <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1143.png">
 
-3. You will now have a jam session
+3. You will now have a Jam session
 <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1144.png">
 
-4. Invite your friends !
+4. Invite your friends!
 <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1145.png">
 
 **Note:**
 - Only the jam session host needs to run the executable file
-- The jam session host must then autheicate (!auth) with the bot (only the jam session host needs to do this)
-- After this is done, everyone in the jam session can use the commands for the bot 
+- The jam session host must then authenticate (!auth) with the bot (only the jam session host needs to do this)
+- After this is done, everyone in the jam session can use the commands for the bot
+- Host cannot change the sound output of their Spotify to any other device output as it will end the Spotify Jam Session, limited to Spotify Jam functionality (still in Beta as of typing this)
+- Anyone other than the Host can change their output and the Jam session should still be okay
 
 
 # How to run
@@ -198,23 +220,6 @@ Once users are in Discord and in each others Spotify listening parties, users ca
     docker run --env-file env_file_2 -d --name container2 andrewto/discotify:v3.0
      ```
      - env_file_1 and env_file_2 are paths to your two .env files while container1 and container2 can be any names you want to want to name your container
-
-# General Commands
-1. `!hello` : Greets the user.
-2. `!auth` : Initiates authentication with Spotify.
-3. `!help` : Displays a list of avaiable commands.
-
-# Spotify Playback Control
-1. `!play <query>` : plays a track on Spotify. The `<query>` can be a Spotify link, song name, or song name with the artist.
-2. `!pause` : Pauses the current playback on Spotify.
-3. `!resume` : Resumes playback on Spotify.
-4. `!next` : Skips to the next track on Spotify.
-5. `!previous` : Goes to the previous track on Spotify
-6. `!devices` : Lists avaiable Spotify devices.
-
-# Spotify User Data
-1. `!toptracks` : Shows the user's top 10 tracks on Spotify.
-2. `!playlist <name>` : Plays a playlist from the user's library on Spotify by playlist name.
 
 # How to contribute
 Follow this project board to know the latest status of the project: [http://...]([http://...])  
