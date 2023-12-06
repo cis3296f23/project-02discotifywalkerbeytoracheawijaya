@@ -50,25 +50,25 @@ Once users are in Discord and in each others Spotify listening parties, users ca
     <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/f1384395-cf1b-46d4-8a2e-4f6d6272448b">
 
 
-# How To Set Up Spotify Jam Sesson
+# [EXPERIMENTAL] How To Set Up Spotify Jam Sesson
 
 1. Open Spotify and play something
 
  <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1142.png">
 
-2. Tap the Connect device icon at the bottom of the screen and then start a jam session
+2. Tap the connect device icon at the bottom of the screen and then start a Jam session
 
 <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1143.png">
 
-3. You will now have a jam session
+3. You will now have a Jam session
 <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1144.png">
 
-4. Invite your friends !
+4. Invite your friends!
 <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1145.png">
 
 **Note:**
 - Only the jam session host needs to run the executable file
-- The jam session host must then autheicate (!auth) with the bot (only the jam session host needs to do this)
+- The jam session host must then authenticate (!auth) with the bot (only the jam session host needs to do this)
 - After this is done, everyone in the jam session can use the commands for the bot 
 
 
@@ -198,23 +198,6 @@ Once users are in Discord and in each others Spotify listening parties, users ca
     docker run --env-file env_file_2 -d --name container2 andrewto/discotify:v3.0
      ```
      - env_file_1 and env_file_2 are paths to your two .env files while container1 and container2 can be any names you want to want to name your container
-
-# General Commands
-1. `!hello` : Greets the user.
-2. `!auth` : Initiates authentication with Spotify.
-3. `!help` : Displays a list of avaiable commands.
-
-# Spotify Playback Control
-1. `!play <query>` : plays a track on Spotify. The `<query>` can be a Spotify link, song name, or song name with the artist.
-2. `!pause` : Pauses the current playback on Spotify.
-3. `!resume` : Resumes playback on Spotify.
-4. `!next` : Skips to the next track on Spotify.
-5. `!previous` : Goes to the previous track on Spotify
-6. `!devices` : Lists avaiable Spotify devices.
-
-# Spotify User Data
-1. `!toptracks` : Shows the user's top 10 tracks on Spotify.
-2. `!playlist <name>` : Plays a playlist from the user's library on Spotify by playlist name.
 
 # How to contribute
 Follow this project board to know the latest status of the project: [http://...]([http://...])  
