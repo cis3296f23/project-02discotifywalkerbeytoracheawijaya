@@ -1,7 +1,7 @@
 # Discotify
 Discotify is a Discord/Spotify bot solution to enhance user experiences when listening to Spotify music in Discord parties. Our Discord bot solution allows multiple people to control Spotify listening parties instead of a single person. Your listening experience can now become fun and collaborative!
 Users who would benefit most from this program would be users who have Spotify premium and actively use Discord with friends or other people.
-Once users are in Discord and in each others Spotify listening parties, users can send commands to the bot. These commands include but are not limited to actions such as start track, pause track, skip track, and add to queue.
+Once users are in Discord and in each others Spotify listening parties, users can send commands to the bot. These commands include but are not limited to actions such as start track, pause track, skip track, and add to queue
 
 # General Commands
 1. `!hello` : Greets the user.
@@ -48,6 +48,29 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 
 2. **Copy and Use the Invite Link**: Copy the generated link and paste it into your web browser. Select the server to which you want to add the bot and authorize it.
     <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/f1384395-cf1b-46d4-8a2e-4f6d6272448b">
+
+
+# How To Set Up Spotify Jam Sesson
+
+1. Open Spotify and play something
+
+ <img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1142.png">
+
+2. Tap the Connect device icon at the bottom of the screen and then start a jam session
+
+<img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1143.png">
+
+3. You will now have a jam session
+<img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1144.png">
+
+4. Invite your friends !
+<img width="400" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="images/IMG_1145.png">
+
+**Note:**
+- Only the jam session host needs to run the executable file
+- The jam session host must then autheicate (!auth) with the bot (only the jam session host needs to do this)
+- After this is done, everyone in the jam session can use the commands for the bot 
+
 
 # How to run
 
