@@ -49,8 +49,28 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 2. **Copy and Use the Invite Link**: Copy the generated link and paste it into your web browser. Select the server to which you want to add the bot and authorize it.
     <img width="2056" alt="Screenshot 2023-12-02 at 3 40 25 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/f1384395-cf1b-46d4-8a2e-4f6d6272448b">
 
+# How to set up listening party on Discord
 
-# [EXPERIMENTAL] How To Set Up Spotify Jam Sesson
+1. Open Spotify and play something
+   ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/ed85770f-7d69-48e6-9f70-c0d26fe03c2b)
+
+3. Click on the "+" button next to your chatbox at the bottom left and click on "Invite [users] to Listen to Spotify"
+   ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/a3d3fd73-38eb-430d-a226-60a797ee099d)
+
+5. You should be able to see when you're in a listening party through Discord
+
+   ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/495b32b4-f15a-4ee1-ac8f-0fdf2fd2976b)
+   
+6. People can now click the Join button to be in your listening party!
+
+**Note:**
+- Only the listening party host needs to run the executable file
+- The listening party host must then authenticate (!auth) with the bot (only the listening party host needs to do this)
+- After this is done, everyone in the listening party can use the commands for the bot
+- If you pause (!pause) then the listening party will end, this is on Spotify/Discords end on how they made the functionality
+
+
+# [EXPERIMENTAL] How To set up Spotify Jam Session
 
 1. Open Spotify and play something
 
@@ -69,7 +89,9 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 **Note:**
 - Only the jam session host needs to run the executable file
 - The jam session host must then authenticate (!auth) with the bot (only the jam session host needs to do this)
-- After this is done, everyone in the jam session can use the commands for the bot 
+- After this is done, everyone in the jam session can use the commands for the bot
+- Host cannot change the sound output of their Spotify to any other device output as it will end the Spotify Jam Session, limited to Spotify Jam functionality (still in Beta as of typing this)
+- Anyone other than the Host can change their output and the Jam session should still be okay
 
 
 # How to run
