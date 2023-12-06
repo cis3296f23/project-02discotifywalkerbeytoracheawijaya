@@ -312,7 +312,41 @@ async def playlist(ctx, *, query: str):
         await ctx.send(f'Now playing playlist "{playlist_name}"\nRequested by: {requester}\nPlaylist URL: {playlist_url}')
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
+import spotipy
+
+@bot.command(name='profile', help='Show your Spotify profile')
+async def spotify_profile(ctx):
+    """ Command to show the user's Spotify profile """
+    if spotify_tokens['access_token'] is None:
+        await ctx.send("You need to authenticate with Spotify first.")
+        return
+
+    await refresh_spotify_token()
+
+    spotify = spotipy.Spotify(auth=spotify_tokens['access_token'])
+
+    try:
+        user_profile = spotify.current_user()
+        if not user_profile:
+            await ctx.send("Sorry, I couldn't retrieve your profile.")
+            return
+
+        # Extract relevant information from user profile
+        user_display_name = user_profile.get('display_name', 'No display name')
+        followers = user_profile['followers']['total']
+        profile_url = user_profile['external_urls']['spotify']
+
+        profile_message = (
+            f"Spotify Profile of {user_display_name}:\n"
+            f"Followers: {followers}\n"
+            f"Profile URL: {profile_url}"
+        )
+
+        await ctx.send(profile_message)
+    except spotipy.exceptions.SpotifyException as e:
+        await ctx.send("An error occurred: " + str(e))
 
 # Run the bot
 token = os.getenv('DISCORD_TOKEN')
 bot.run(token)
+
