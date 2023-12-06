@@ -312,7 +312,6 @@ async def playlist(ctx, *, query: str):
         await ctx.send(f'Now playing playlist "{playlist_name}"\nRequested by: {requester}\nPlaylist URL: {playlist_url}')
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
-import spotipy
 
 @bot.command(name='profile', help='Show your Spotify profile')
 async def spotify_profile(ctx):
