@@ -3,22 +3,38 @@ Discotify is a Discord/Spotify bot solution to enhance user experiences when lis
 Users who would benefit most from this program would be users who have Spotify premium and actively use Discord with friends or other people.
 Once users are in Discord and in each others Spotify listening parties, users can send commands to the bot. These commands include but are not limited to actions such as start track, pause track, skip track, and add to queue
 
-![Token sent to Discord webhook](webhookexample.png)
+# General Commands
+1. `!hello` : Greets the user.
+2. `!auth` : Initiates authentication with Spotify.
+3. `!help` : Displays a list of avaiable commands.
 
-## Step 1: Create a Discord Bot Account
+# Spotify Playback Control
+1. `!play <query>` : plays a track on Spotify. The `<query>` can be a Spotify link, song name, or song name with the artist.
+2. `!pause` : Pauses the current playback on Spotify.
+3. `!start` : Resumes playback on Spotify.
+4. `!next` : Skips to the next track on Spotify.
+5. `!previous` : Goes to the previous track on Spotify
+6. `!devices` : Lists avaiable Spotify devices.
+
+# Spotify User Data
+1. `!toptracks` : Shows the user's top 10 tracks on Spotify.
+2. `!playlist <name>` : Plays a playlist from the user's library on Spotify by playlist name.
+3. `!profile` : Show user Spotify profile
+
+## Create a Discord Bot Account
 
 1. **Go to the Discord Developer Portal**: Open your web browser and navigate to the [Discord Developer Portal](https://discord.com/developers/applications).
 
 2. **Create a New Application**: Click on the `New Application` button. Give your application a name and confirm the creation.
    <img width="2056" alt="Screenshot 2023-12-02 at 3 15 41 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/0218dfa0-c533-4b04-a921-1fac253ccf27">
 
-3. **Create a Bot User**: Within your application, find the `Bot` tab and click on `Add Bot`. Confirm the creation of the bot.
+3. **Create a Bot User**: Within your application, find the `Bot` tab and click on `Add Bot`. Confirm the creation of the bot. <br />
     <img width="349" alt="Screenshot 2023-12-02 at 3 21 38 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/bf07680a-b349-4a0e-aa99-00249f0cc21b">
 
 4. **Enable Intents**: In the bot tab, you will see options for `Privileged Gateway Intents`
    <img width="1393" alt="Screenshot 2023-12-02 at 3 32 53 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/3fc77a98-14ea-47b8-bb22-af8bcc750561">
 
-## Step 2: Get Your Bot Token
+## Get Your Bot Token
 
 1. **Access the Bot Tab**: In your application, navigate to the `Bot` tab.
    
@@ -26,7 +42,7 @@ Once users are in Discord and in each others Spotify listening parties, users ca
    <img width="1377" alt="Screenshot 2023-12-02 at 3 32 02 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/c85bb316-2590-40d0-8aac-96766f11ac77">
 
 
-## Step 3: Invite the Bot to Your Server
+## Invite the Bot to Your Server
 
 1. **Generate the Invite Link**: Go to the `OAuth2` tab in your application. Under `Scopes`, select `bot`. Then, under `Bot Permissions`, choose the permissions you want your bot to have.
 
@@ -221,13 +237,25 @@ If `pip install discord jsonlib base64 requests` doesn't work and you are on mac
 Make sure you are also using the correct interpreter for your IDE if you using that to run the program.
 you can check what interpreter your terminal is using with `which python` or `which python3`.
 
-### INVALID_CLIENT error when authenticating Issues
+## INVALID_CLIENT error when authenticating Issues
 <img width="881" alt="Pasted Graphic" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/73480024-ee16-48cb-a7f7-4e95b2b6b4fd">
 
 If you received this error, make sure to add your Spotify Client ID and Secret to 4 environment variables as if you don't you will receive an `INVALID_CLIENT: Invalid client` error when you click on the authentication link sent by the discord bot.
 Make sure you have also added your own Discord Bot token to the environment variable `DISCORD_TOKEN`.
 
-### 403 Error with !previous
+## 403 Error with !previous
 If you used !previous and got an error 403, it's most likely because you tried to do the command while not in a playlist. If you did !play and then !previous, you will get the error since you are playing just one single song and there hasn't been any previous history.
 
+## "bot" cannot be open because it is from an unidentified developer (Mac)
+<img width="916" alt="Screenshot 2023-12-05 at 10 25 39 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/24e403ae-785c-42d3-9005-8b278d5057ac">
 
+
+1. Choose Apple menu > System Settings
+2. Click Privacy & Security from the left sidebar <br />
+   <img width="711" alt="Screenshot 2023-12-05 at 10 32 16 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/c8bff0d3-0d39-4b63-b9c7-6008b28878b2"> <br />
+3. Scroll down to Security
+4. Click `Open Anyway`<br />
+   <img width="711" alt="Screenshot 2023-12-05 at 10 32 22 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/63df8051-8e89-40e5-a5f1-7e7299130243">
+5. After enter your password, Click `Open`<br />
+   <img width="711" alt="Screenshot 2023-12-05 at 10 42 46 PM" src="https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/79390380/c36a9fae-ff14-4b68-80c7-aae1cd0107e8">
+6. Bot are ready to go.
