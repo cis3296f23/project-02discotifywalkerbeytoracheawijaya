@@ -54,9 +54,10 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 1. Open Spotify and play something
    ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/ed85770f-7d69-48e6-9f70-c0d26fe03c2b)
 
-3. Click on the "+" button next to your chatbox at the bottom left and click on "Invite [users] to Listen to Spotify"
+3. Click on the "+" button next to your chatbox at the bottom left and click on "Invite [users] to Listen to Spotify" 
    ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/a3d3fd73-38eb-430d-a226-60a797ee099d)
-
+   <br />
+   `If the option 'Invite [users] to listen to Spotify' does not appear, make sure your Discord status is set to online.`
 5. You should be able to see when you're in a listening party through Discord
 
    ![image](https://github.com/cis3296f23/project-02discotifywalkerbeytoracheawijaya/assets/50151203/495b32b4-f15a-4ee1-ac8f-0fdf2fd2976b)
