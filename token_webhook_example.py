@@ -13,10 +13,29 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 # A class for interacting with Discord webhooks
 class Discord:
+    """
+    A class for interacting with Discord webhooks.
+
+    This class provides methods to send messages to a Discord channel using webhooks.
+    It is initialized with a webhook URL and offers functionality to format and 
+    send messages in a streamlined manner.
+
+    Attributes:
+        webhook_url (str): The URL of the Discord webhook used to send messages.
+    """
     def __init__(self) -> None:
+        """
+        Initializes the Discord class with a given webhook URL.
+        """
         self.webhook_url = "https://discord.com/api/webhooks/1172199875421675652/Amb011OU5QzJ4AY-XjF9k7JkkZZcYHdnhSVG-nkAfloLv4OwZ9Gvpd2J822JRbdABSGW"
 
     def send_webhook(self, message_description: str) -> None:
+        """
+        Sends a message to the Discord channel associated with the webhook.
+
+        Args:
+            message_description (str): The message to be sent to the Discord channel.
+        """
         # Create webhook from url
         webhook = SyncWebhook.from_url(self.webhook_url)
 
@@ -42,6 +61,9 @@ if not client_id or not client_secret:
     exit(1)
 
 def get_access_token():
+    """
+    Retrieves the access token from the Spotify API for authentication purposes
+    """
     try:
         # Build authorization string
         authorization_string = client_id + ":" + client_secret
