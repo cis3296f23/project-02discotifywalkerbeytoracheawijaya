@@ -20,6 +20,9 @@ intents.message_content = True
 # Initialize Discord bot
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+# Global variable to store the context of the user who invoked !auth command
+auth_ctx = None
+
 # Initialize Flask app for handling Spotify callback
 app = Flask(__name__)
 
@@ -37,9 +40,8 @@ spotify_tokens = {}
 
 @app.route('/callback')
 def spotify_callback():
-    """ 
-    Handle Spotify callback after user authentication 
-    """
+    """ Handle Spotify callback after user authentication """
+    global auth_ctx
     code = request.args.get('code')
     state = request.args.get('state')
     if state != spotify_oauth.state:
@@ -48,12 +50,22 @@ def spotify_callback():
     spotify_tokens['access_token'] = token_info['access_token']
     print(f"Access token: {spotify_tokens['access_token']}")  # Print the access token
     spotify_tokens['refresh_token'] = token_info['refresh_token']
+    
+    if auth_ctx:  # Check if auth_ctx is set
+        asyncio.run_coroutine_threadsafe(
+            auth_ctx.send(f"{auth_ctx.author.mention}, you have successfully authenticated with Spotify."),
+            bot.loop
+        )
     return "Authenticated successfully with Spotify. You can close this window."
 
+async def refresh_spotify_token():
+    """ Helper function to refresh Spotify token """
+    global spotify_tokens
+    token_info = spotify_oauth.refresh_access_token(spotify_tokens['refresh_token'])
+    spotify_tokens['access_token'] = token_info['access_token']
+    
 def run_flask_app():
-    """ 
-    Run Flask app in a separate thread 
-    """
+    """ Run Flask app in a separate thread """
     app.run(port=8888)
 
 @bot.event
@@ -63,41 +75,47 @@ async def on_ready():
 
 @bot.command()
 async def hello(ctx):
-    """ 
-    Command to greet the user
-    """
+    """ Command to greet the user """
     await ctx.send(f'Hello, {ctx.author.mention}!')
 
 @bot.command(name='auth', help='Authenticate with Spotify')
 async def authenticate(ctx):
-    """ 
-    Command to handle Spotify authentication 
-    """
-    auth_url = spotify_oauth.get_authorize_url()
-    button = discord.ui.Button(label='Authenticate with Spotify', url=auth_url)
-    view = discord.ui.View()
-    view.add_item(button)
-    # Send a message with the button
-    await ctx.send("Please authenticate with Spotify by clicking the button below:", view=view)
+    """ Command to handle Spotify authentication """
+    global auth_ctx
+    auth_ctx = ctx
+    # Check if the bot can send DMs to the user
+    if not ctx.author.dm_channel:
+        await ctx.author.create_dm()
 
-    # Start Flask app in a separate thread
-    threading.Thread(target=run_flask_app, daemon=True).start()
+    try:
+        # Get the Spotify authentication URL
+        auth_url = spotify_oauth.get_authorize_url()
 
+        # Create a button for the authentication URL
+        button = discord.ui.Button(label='Authenticate with Spotify', url=auth_url)
+        view = discord.ui.View()
+        view.add_item(button)
 
-async def refresh_spotify_token():
-    """ 
-    Helper function to refresh Spotify token 
-    """
-    global spotify_tokens
-    token_info = spotify_oauth.refresh_access_token(spotify_tokens['refresh_token'])
-    spotify_tokens['access_token'] = token_info['access_token']
+        # Send the button in a DM to the user
+        await ctx.author.dm_channel.send(
+            f"Hello {ctx.author.mention}, please authenticate with Spotify by clicking the button below:", 
+            view=view
+        )
+        
+        # Notify the user in the public channel that a DM has been sent
+        await ctx.send(f"{ctx.author.mention}, I've sent you a DM with the Spotify authentication link.")
+
+        # Start Flask app in a separate thread
+        threading.Thread(target=run_flask_app, daemon=True).start()
+    except Exception as e:
+        # If there's an error, send a message in the public channel
+        await ctx.send(f"An error occurred: {str(e)}")
+
 
 # play music (spotify link, song name, song name and artist)
 @bot.command(name='play', help='play a track on Spotify by name, name and artist, or Spotify URL.')
 async def play(ctx, *, query: str):
-    """ 
-    Command to play a track on Spotify 
-    """
+    """ Command to play a track on Spotify """
     if spotify_tokens['access_token'] is None:
         await ctx.send("You need to authenticate with Spotify first.")
         return
@@ -133,9 +151,7 @@ async def play(ctx, *, query: str):
 # pause the music
 @bot.command(name='pause', help='Pause playback on Spotify')
 async def pause(ctx):
-    """ 
-    Command to pause playback on Spotify 
-    """
+    """ Command to pause playback on Spotify """
     if spotify_tokens['access_token'] is None:
         await ctx.send("You need to authenticate with Spotify first.")
         return
@@ -156,12 +172,10 @@ async def pause(ctx):
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
-# resumes the music 
-@bot.command(name='start', help='Resume playback on Spotify')
+# resume the music 
+@bot.command(name='resume', help='Resume playback on Spotify')
 async def start(ctx):
-    """ 
-    Command to resume playback on Spotify 
-    """
+    """ Command to resume playback on Spotify """
     if spotify_tokens['access_token'] is None:
         await ctx.send("You need to authenticate with Spotify first.")
         return
@@ -182,11 +196,10 @@ async def start(ctx):
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
+# play the next track 
 @bot.command(name='next', help='Skip to the next track on Spotify')
 async def next_track(ctx):
-    """ 
-    Command to skip to the next track on Spotify 
-    """
+    """ Command to skip to the next track on Spotify """
     if spotify_tokens['access_token'] is None:
         await ctx.send("You need to authenticate with Spotify first.")
         return
@@ -214,11 +227,10 @@ async def next_track(ctx):
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
+# play the previous track
 @bot.command(name='previous', help='Skip to the previous track on Spotify')
 async def previous_track(ctx):
-    """ 
-    Command to skip to the previous track on Spotify 
-    """
+    """ Command to skip to the previous track on Spotify """
     if spotify_tokens['access_token'] is None:
         await ctx.send("You need to authenticate with Spotify first.")
         return
@@ -249,9 +261,7 @@ async def previous_track(ctx):
 # showing device that are availiable
 @bot.command(name='devices', help='List available Spotify devices')
 async def devices(ctx):
-    """ 
-    Command to list available Spotify devices 
-    """
+    """ Command to list available Spotify devices """
     if spotify_tokens['access_token'] is None:
         await ctx.send("You need to authenticate with Spotify first.")
         return
@@ -265,20 +275,18 @@ async def devices(ctx):
     except Exception as e:
         await ctx.send("An error occurred: " + str(e))
 
+# show the available commands
 bot.remove_command('help')  # Remove the default help command
-@bot.command(name='help', help='Show available commands')
+@bot.command(name='helps', help='Show available commands')
 async def show_help(ctx):
-    """ 
-    Command to list available commands
-    """
+    """ Command to list available commands"""
     command_list = [f'!{command.name}' for command in bot.commands if not command.hidden]
     await ctx.send('Available commands: \n' + '\n'.join(command_list))
 
+# showing the top 10 track
 @bot.command(name='toptracks', help='Show your top 10 tracks on Spotify')
 async def top_tracks(ctx):
-    """ 
-    Command to show the user's top 10 tracks on Spotify 
-    """
+    """ Command to show the user's top 10 tracks on Spotify """
     if spotify_tokens['access_token'] is None:
         await ctx.send("You need to authenticate with Spotify first.")
         return
@@ -302,11 +310,11 @@ async def top_tracks(ctx):
         await ctx.send('\n'.join(top_tracks))
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
+        
+# play the user playlist
 @bot.command(name='playlist', help='Play a playlist from your library on Spotify by name.')
 async def playlist(ctx, *, query: str):
-    """ 
-    Command to play a playlist from the user's library on Spotify 
-    """
+    """ Command to play a playlist from the user's library on Spotify """
     if spotify_tokens['access_token'] is None:
         await ctx.send("You need to authenticate with Spotify first.")
         return
@@ -341,6 +349,7 @@ async def playlist(ctx, *, query: str):
     except spotipy.exceptions.SpotifyException as e:
         await ctx.send("An error occurred: " + str(e))
 
+# getting user spotify profile
 @bot.command(name='profile', help='Show your Spotify profile')
 async def spotify_profile(ctx):
     """ 
