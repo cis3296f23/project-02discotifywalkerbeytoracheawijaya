@@ -378,4 +378,3 @@ async def spotify_profile(ctx):
 # Run the bot
 token = os.getenv('DISCORD_TOKEN')
 bot.run(token)
-
