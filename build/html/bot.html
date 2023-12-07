@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>bot &#8212; Discotify 4.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="token_webhook_example module" href="token_webhook_example.html" />
+    <link rel="prev" title="Discotify" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="bot">
+<h1>bot<a class="headerlink" href="#bot" title="Permalink to this heading">¶</a></h1>
+<section id="hello">
+<h2>hello<a class="headerlink" href="#hello" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">hello</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd><p>This asynchronous function sends a greeting to the user who invoked the command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called. Contains information like the channel and guild where the command was invoked.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!hello
+</pre></div>
+</div>
+<p>Upon invocation, this command will send a message in the form of “Hello, &#64;User!” mentioning the user who called the command.</p>
+</dd></dl>
+
+</section>
+<section id="authenticate">
+<h2>authenticate<a class="headerlink" href="#authenticate" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">authenticate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dd><p>This command starts the Spotify authentication process for the user. It sends a message with a button that the user can click to authenticate via Spotify.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called. Contains information like the channel and guild where the command was invoked.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!auth
+</pre></div>
+</div>
+<p>When the user clicks the authentication button, they will be redirected to Spotify’s login page to complete the authentication process.</p>
+</dd></dl>
+
+</section>
+<section id="spotify-callback">
+<h2>spotify_callback<a class="headerlink" href="#spotify-callback" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="spotify_callback">
+<span class="sig-name descname"><span class="pre">spotify_callback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spotify_callback" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function handles the Spotify callback after user authentication. It retrieves the authorization code from Spotify and exchanges it for access tokens.</p>
+<p>The function checks if the state matches and then requests access and refresh tokens from Spotify. If the state does not match, it returns an error.</p>
+<p><strong>Endpoint:</strong> <code class="docutils literal notranslate"><span class="pre">/callback</span></code></p>
+<p><strong>Method:</strong> GET</p>
+<dl class="simple">
+<dt><strong>Returns:</strong></dt><dd><p>A message indicating successful authentication or an error message in case of state mismatch.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="run-flask-app">
+<h2>run_flask_app<a class="headerlink" href="#run-flask-app" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="run_flask_app">
+<span class="sig-name descname"><span class="pre">run_flask_app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#run_flask_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function runs the Flask application in a separate thread. It’s used to handle the Spotify authentication callback.</p>
+<p><strong>Usage:</strong></p>
+<p>The function is used internally and is not directly callable via Discord.</p>
+</dd></dl>
+
+</section>
+<section id="on-ready">
+<h2>on_ready<a class="headerlink" href="#on-ready" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="on_ready">
+<span class="sig-name descname"><span class="pre">on_ready</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#on_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>This event handler function is triggered when the bot is ready. It prints a message to the console indicating that the bot has successfully logged in.</p>
+<p><strong>Usage:</strong></p>
+<p>Automatically triggered by the Discord API when the bot starts and is ready to receive commands.</p>
+</dd></dl>
+
+</section>
+<section id="play">
+<h2>play<a class="headerlink" href="#play" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plays a track on Spotify based on the given query. The query can be a Spotify URL, track name, or track name with artist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – The context in which the command was called.</p></li>
+<li><p><strong>query</strong> – The search query or Spotify URL for the track.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!play &lt;Spotify URL or track name&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="pause">
+<h2>pause<a class="headerlink" href="#pause" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">pause</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pauses the current Spotify playback.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!pause
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="start">
+<h2>start<a class="headerlink" href="#start" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resumes Spotify playback.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!start
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="next-track">
+<h2>next_track<a class="headerlink" href="#next-track" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="next_track">
+<span class="sig-name descname"><span class="pre">next_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#next_track" title="Permalink to this definition">¶</a></dt>
+<dd><p>Skips to the next track in the Spotify queue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!next
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="previous-track">
+<h2>previous_track<a class="headerlink" href="#previous-track" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="previous_track">
+<span class="sig-name descname"><span class="pre">previous_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#previous_track" title="Permalink to this definition">¶</a></dt>
+<dd><p>Goes back to the previous track in the Spotify queue.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!previous
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="devices">
+<h2>devices<a class="headerlink" href="#devices" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">devices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all available Spotify devices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!devices
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="show-help">
+<h2>show_help<a class="headerlink" href="#show-help" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="show_help">
+<span class="sig-name descname"><span class="pre">show_help</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#show_help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all available commands in the bot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!help
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="top-tracks">
+<h2>top_tracks<a class="headerlink" href="#top-tracks" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="top_tracks">
+<span class="sig-name descname"><span class="pre">top_tracks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#top_tracks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the user’s top 10 tracks on Spotify.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – The context in which the command was called.</p>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!toptracks
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="playlist">
+<h2>playlist<a class="headerlink" href="#playlist" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">playlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plays a playlist from the user’s Spotify library based on the given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – The context in which the command was called.</p></li>
+<li><p><strong>query</strong> – The name of the playlist to play.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Usage:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>!playlist &lt;playlist name&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="spotify-profile">
+<h2>spotify_profile<a class="headerlink" href="#spotify-profile" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="spotify_profile">
+<span class="sig-name descname"><span class="pre">spotify_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spotify_profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the user’s Spotify profile details</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Discotify</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Discotify</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="token_webhook_example.html">token_webhook_example module</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Discotify</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">Discotify</a></li>
+      <li>Next: <a href="token_webhook_example.html" title="next chapter">token_webhook_example module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Adam Ra, Andrew To, Kevin Wijaya, Par Chea, Zaina Walker-Bey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/bot.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
