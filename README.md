@@ -6,12 +6,12 @@ Once users are in Discord and in each others Spotify listening parties, users ca
 # General Commands
 1. `!hello` : Greets the user.
 2. `!auth` : Initiates authentication with Spotify.
-3. `!help` : Displays a list of avaiable commands.
+3. `!helps` : Displays a list of avaiable commands.
 
 # Spotify Playback Control
 1. `!play <query>` : plays a track on Spotify. The `<query>` can be a Spotify link, song name, or song name with the artist.
 2. `!pause` : Pauses the current playback on Spotify.
-3. `!start` : Resumes playback on Spotify.
+3. `!resume` : Resumes playback on Spotify.
 4. `!next` : Skips to the next track on Spotify.
 5. `!previous` : Goes to the previous track on Spotify
 6. `!devices` : Lists avaiable Spotify devices.
